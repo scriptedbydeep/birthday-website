@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Little Surprise 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ffd6e7, #ffc2dd);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+/* Main Button */
+#magicBtn {
+    margin-top: 120px;
+    padding: 18px 50px;
+    font-size: 22px;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, #ff4d88, #ff99cc);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 77, 136, 0.4);
+    transition: 0.3s ease;
+}
+
+#magicBtn:hover {
+    transform: scale(1.08);
+}
+
+/* Balloons */
+.balloon {
+    position: fixed;
+    bottom: -100px;
+    width: 40px;
+    height: 60px;
+    background: pink;
+    border-radius: 50%;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+}
+
+/* Cake Section */
+#cake {
+    opacity: 0;
+    transition: opacity 2s ease;
+    margin-top: 80px;
+}
+
+.show-cake {
+    opacity: 1;
+}
+
+/* Message */
+#message {
+    opacity: 0;
+    transition: opacity 2s ease;
+    max-width: 700px;
+    margin: 40px auto;
+    font-size: 20px;
+    color: #b30059;
+    line-height: 1.6;
+}
+
+.show-message {
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<button id="magicBtn" onclick="handleMagic()">Click It 🎈</button>
+
+<div id="cake">
+    <img src="" width="420px">
+
+<div id="message">
+    My beautiful princess, 💖  
+    You light up my world brighter than a thousand candles ever could.  
+    Your smile, your laughter, your presence — everything about you makes life magical.  
+    I hope today brings you as much happiness as you bring into my life every single day.  
+    Happy Birthday once again, my love. 👑✨
+</div>
+
+<script>
+let step = 0;
+
+function handleMagic() {
+    const btn = document.getElementById("magicBtn");
+
+    if (step === 0) {
+        startBalloons();
+        btn.innerText = "Click Again 🎂";
+        step = 1;
+    } 
+    else if (step === 1) {
+        btn.innerText = "Waitttt 💖";
+        btn.disabled = true;
+
+        setTimeout(() => {
+            document.getElementById("cake").style.opacity = "1";
+            document.getElementById("message").style.opacity = "1";
+        }, 5000);
+
+        step = 2;
+    }
+}
+
+function startBalloons() {
+    for (let i = 0; i < 25; i++) {
+        let balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.animationDuration = (4 + Math.random() * 3) + "s";
+        balloon.style.background = randomColor();
+        document.body.appendChild(balloon);
+    }
+}
+
+function randomColor() {
+    const colors = ["#ff4d88", "#ff66a3", "#ff99cc", "#ff1a75", "#ff80bf"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+</script>
+</body>
+</html>
